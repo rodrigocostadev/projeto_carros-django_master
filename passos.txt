@@ -1,0 +1,63 @@
+
+-instalar o django aula 28 "aula 1 do projeto" ( ver o arquivo passos_instal_django.txt )
+
+- Explicação aula 29 (aula 2 do modulo do projeto) : 
+
+        - sempre que formos rodar algum comando, usar o manage.py e não o dajngo admin 
+        (eles tem as mesmas funcionalidades, mas o arquivo manage.py importa as configurações do meu projeto e entende em qual contexto ele está, no meu projeto no caso)
+
+        - o arquivo __init__ só serve para o interpretador do python indicar que o diretorio com o nome app é um pacote de codigo python
+
+        - o arquivo urls.py é onde eu vou definir as urls do meu projeto
+            ao acessa-lo é possivel ver as urls disponiveis, como por exemplo :
+                urlpatterns = [
+                    path('admin/', admin.site.urls),
+                ]
+
+        - o sqlite vem instalado com o django, é um banco de dados para usar em ambiente de teste (desenvolvimento local)
+            sqlite só deve ser usado para testes, para produção e escalabilidade é recomendado mysqls postgrees ou oracle, 
+            e esses banco de dados devem ser configurados em settings.py na seção databases
+
+
+- Criando um app na pasta raiz:
+
+    python manage.py startapp cars
+
+    -Explicação: Esse comando cria um app, mas no momento em que crio ele não está utilizando o app, 
+    para que o app criado através do comando "python manage.py startapp cars" seja utilizado,
+    preciso ir em settings, e na seção installed_apps devo adicionar o nome do meu app
+
+
+- "aula 32" (aula 5 do modulo do projeto) Comando makemigrations:
+    - 2 comandos que serão bem utilizados (makemigrations e migrate), todos eles serão utilizados através do manage.py
+    - para definir um login e senha de admin é necessário primeiramente inicializar ou configurar o banco de dados,
+    pois como não tenho o banco de dados inicializado ainda, não temos como salvar um usuário se ainda não temos tabela de usuário
+
+    - inicializar as tabelas do banco de dados:
+
+        python manage.py makemigrations
+
+        O que esse comando faz? : ele vai varrer o projeto inteiro, vai olhar app por app, camada por camada, modelo por modelo e
+        vai montar o que chamamos de migrations. Migrations são arquivos de código python que tem escritos neles comandos para banco de dados,
+        por exemplo: dentro do arquivo migrations pode ter um comando de create table no banco de dados
+
+
+        python manage.py migrate
+
+        O que esse comando faz? : é um comando que vai executar as migrations. 
+        O django vai varrer todas as pastas de migrations que nos temos dentro dos nossos apps, e vai pegar todos esses scripts de banco de dados
+        e executar no banco de dados criando toda a estrutura dentro do banco de dados. 
+        Então sempre que tiver alguma alteração nos models e no banco de dados, pra passar essas alterações feitas para o banco de dados 
+        é necessário rodar primeiro o makemigrations pra gerar o script de banco de dados e depois o comando migrate pra pegar esses scripts 
+        que forram gerados pelo django e executar e criar no banco de dados tudo o que precisa
+
+    
+- Acessando o admin "aula 32" :
+
+    python manage.py createsuperuser
+
+    (no caso criei o usuario: rodrigo   email:rodrigo.costa94@yahoo.com.br   senha: 1234)
+    agora com o admin criado é possivel acessar a pagina de adm, certifique-se de que o servidor esta rodando com o comando:
+        python manage.py runserver
+    ir no servidor local/pagina, e no localhost:8000/admin vai pedir o usuário e a senha para abrir a tela de admin
+    Na tela de admin é possivel adicionar um novo usuário, excluir, adicionar usuario a um grupo

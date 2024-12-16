@@ -1,0 +1,30 @@
+
+-criar pasta
+
+-criar arquivos
+
+-dar o comando:
+    python -m venv "minhaVenv"
+
+-ativar o ambiente virtual:
+    .\venv\Scripts\activate
+
+-
+    pip install djago
+
+
+-certificar-se que o django foi instalado da maneira correta:
+    django-admin --version           (vai retornar a versão atual do django, ex: 5.1.4)
+
+-dar o comando django-admin startproject "nome do seu projeto" . "espaço e ponto" , como no exemplo a seguir:
+    django-admin startproject app .
+
+    EXPLICAÇÃO: o espaço e ponto no final é pra indicar em qual pasta quero criar o meu projeto, e para onde eu quero que fiquem os arquivos iniciais.
+    é como se ele dissesse: django, inicie um projeto de nome app na minha pasta raiz 
+    (a pasta raiz é a pasta principal onde engloba todo o projeto, no nosso caso é a pasta "projeto_carros-django_master")
+    É ACONSELHAVEL DAR O COMANDO STARTPROJECT COM O NOME "APP" ou "CORE" PARA DIFERENCIAR DO NOME DA SUA PASTA RAIZ :
+    (imagine a pasta raiz carros, e depois vc dar o comando: "django-admin startproject carros ." ficaria a pasta raiz carros tendo dentro dela a pasta carros )
+
+
+- comando para subir um servidor local de desenvolvimento (da nossa aplicação)
+    python manage.py runserver
